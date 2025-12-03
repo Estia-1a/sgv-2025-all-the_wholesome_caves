@@ -9,8 +9,8 @@
     <title>the_Wholesome_Caves</title>
     <style>
         body {
-            background-color: orangered;
-                        margin: 0;
+            background-color: whitesmoke;
+            margin: 0;
             font-family: Arial, sans-serif;
         }
         .sticky-header {
@@ -39,6 +39,36 @@
         .header-group a:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 60px 20px 20px 20px;
+            color: white;
+        }
+        .profile-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: whitesmoke;
+            border: 4px solid white;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            object-fit: cover;
+        }
+        .profile-name {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: black
+        }
+        .profile-program {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -47,7 +77,6 @@
         <nav class="header-group">
             <a href="temp_ontheway.html">Profil étudiant</a>
             <a href="temp_ontheway.html">Profil financier</a>
-            <a href="temp_ontheway.html">Profil utilisateur</a>
         </nav>
 
         <div class="header-group">
@@ -55,6 +84,12 @@
         </div>
 
     </header>
+
+    <main class="profile-container">
+        <img src="media/images/AdobeStock_638000927_Preview.jpeg" alt="Photo de profil" class="profile-image">
+        <p class="profile-name">Antoine Mandian</p>
+        <p class="profile-program">Etudiant 1A</p>
+    </main>
 
 </body>
 </html>
