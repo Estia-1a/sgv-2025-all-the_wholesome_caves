@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)"> 
+    <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)"> 
+    <title>the_Wholesome_Caves</title>
+    <style>
+        body {
+            background-color: orangered;
+                        margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sticky-header {
+            background-color: blue;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }        
+        .header-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .header-group a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header-group a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sticky-header">
+        <nav class="header-group">
+            <a href="temp_ontheway.html">Profil étudiant</a>
+            <a href="temp_ontheway.html">Profil financier</a>
+            <a href="temp_ontheway.html">Profil utilisateur</a>
+        </nav>
+
+        <div class="header-group">
+            <a href="index.html">Accueuil</a>
+        </div>
+
+    </header>
+
+</body>
+</html>
