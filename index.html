@@ -41,6 +41,32 @@
         .header-group a:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
+
+        /* --- Ajout : emplacement circulaire pour l'avatar --- */
+        .avatar-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-sizing: border-box;
+            background-color: rgba(255,255,255,0.06);
+        }
+        .avatar-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .avatar-placeholder:focus-within {
+            outline: 3px solid rgba(255,255,255,0.35);
+            outline-offset: 2px;
+        }
+        @media (min-width: 768px) {
+            .avatar-placeholder { width: 48px; height: 48px; }
+        }
+        /* --- fin ajout --- */
     </style>
 </head>
 <body>
@@ -53,7 +79,12 @@
         </nav>
 
         <div class="header-group">
-            <a href="accueuil.html">Accueuil</a>
+            <a href="accueil.html">Accueil</a>
+
+            <!-- Emplacement circulaire pour l'image de profil (ajouté sans modifier le reste) -->
+            <a href="profil_utilisateur.html" class="avatar-placeholder" title="Mon profil" aria-label="Mon profil">
+                <img src="media/pictures/avatar.png" alt="Avatar">
+            </a>
         </div>
 
     </header>
