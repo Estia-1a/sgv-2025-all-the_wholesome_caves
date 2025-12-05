@@ -88,3 +88,49 @@
 .bubble.documents {
   min-height: 187px;
 }
+
+/* Bouton flottant édition en bas à droite */
+.floating-edit-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  background: #2a4d7a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(42, 77, 122, 0.3);
+  transition: all 200ms ease;
+  pointer-events: none;  /* non clickable */
+  z-index: 100;
+}
+
+.floating-edit-btn:hover {
+  background: #1e3a52;
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(42, 77, 122, 0.5);
+}
+
+.floating-edit-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+/* Responsive mobile */
+@media (max-width: 767px) {
+  .floating-edit-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .floating-edit-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
