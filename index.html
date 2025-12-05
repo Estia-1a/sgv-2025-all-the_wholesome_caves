@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -101,58 +101,10 @@
       <div class="bubble planning">
         <h3>Planning</h3>
 
-        <!-- Calendrier statique pour Décembre 2025 (les cases affichent seulement les dates) -->
-        <div class="calendar" aria-label="Calendrier Décembre 2025">
-          <div class="calendar-header">Décembre 2025</div>
-
-          <div class="calendar-grid">
-            <div class="weekday">Lun</div>
-            <div class="weekday">Mar</div>
-            <div class="weekday">Mer</div>
-            <div class="weekday">Jeu</div>
-            <div class="weekday">Ven</div>
-            <div class="weekday">Sam</div>
-            <div class="weekday">Dim</div>
-
-            <div class="day">1</div>
-            <div class="day">2</div>
-            <div class="day">3</div>
-            <div class="day">4</div>
-            <div class="day">5</div>
-            <div class="day">6</div>
-            <div class="day">7</div>
-
-            <div class="day">8</div>
-            <div class="day">9</div>
-            <div class="day">10</div>
-            <div class="day">11</div>
-            <div class="day">12</div>
-            <div class="day">13</div>
-            <div class="day">14</div>
-
-            <div class="day">15</div>
-            <div class="day">16</div>
-            <div class="day">17</div>
-            <div class="day">18</div>
-            <div class="day">19</div>
-            <div class="day">20</div>
-            <div class="day">21</div>
-
-            <div class="day">22</div>
-            <div class="day">23</div>
-            <div class="day">24</div>
-            <div class="day">25</div>
-            <div class="day">26</div>
-            <div class="day">27</div>
-            <div class="day">28</div>
-
-            <div class="day">29</div>
-            <div class="day">30</div>
-            <div class="day">31</div>
-            <div class="day empty"></div>
-            <div class="day empty"></div>
-            <div class="day empty"></div>
-          </div>
+        <!-- Calendrier dynamique : role region + aria-labelledby pour l'accessibilité -->
+        <div class="calendar" role="region" aria-labelledby="calendar-title">
+          <div id="calendar-title" class="calendar-header">—</div>
+          <div class="calendar-grid" id="calendar-grid" aria-hidden="false"></div>
         </div>
 
       </div>
@@ -178,6 +130,111 @@
       </div>
 
     </div>
+
+    <script>
+      // Exemple d'événements — remplace / étends selon tes données réelles
+      const events = [
+        { date: '2025-12-05', time: '10:00', title: 'Séance Programmation Web', type: 'cours', location: 'Salle 201' },
+        { date: '2025-12-05', time: '14:00', title: 'TD Algorithmique', type: 'td', location: 'Salle 103' },
+        { date: '2025-12-08', time: '09:00', title: 'Contrôle Maths', type: 'examen', location: 'Amphi A' },
+        { date: '2025-12-10', time: '13:30', title: 'TP Physique', type: 'tp', location: 'Lab 2' },
+        { date: '2025-12-18', time: '11:00', title: 'Rendez-vous pédagogique', type: 'rdv', location: 'Bureau 12' },
+        { date: '2025-12-24', time: '00:00', title: 'Vacances', type: 'vac', location: '' }
+      ];
+
+      // couleurs par type
+      const typeColors = {
+        cours: '#2a4d7a',
+        td: '#1e8f6e',
+        tp: '#d97706',
+        examen: '#b91c1c',
+        rdv: '#6b21a8',
+        vac: '#0ea5e9',
+        default: '#3b3b3b'
+      };
+
+      // Utilitaires
+      function pad(n){ return n < 10 ? '0' + n : '' + n; }
+      function yyyy_mm_dd(y,m,d){ return `${y}-${pad(m)}-${pad(d)}`; }
+      const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+      // Génère le calendrier pour (year, monthIndex 0-based)
+      function renderCalendar(year, monthIndex){
+        const grid = document.getElementById('calendar-grid');
+        grid.innerHTML = '';
+        document.getElementById('calendar-title').textContent = monthNames[monthIndex] + ' ' + year;
+
+        // en-têtes semaine (Lun..Dim)
+        const weekdays = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+        weekdays.forEach(w => {
+          const el = document.createElement('div');
+          el.className = 'weekday';
+          el.textContent = w;
+          grid.appendChild(el);
+        });
+
+        // calculs
+        const firstDayJS = new Date(year, monthIndex, 1).getDay(); // 0=Dim ... 6=Sam
+        const startIndex = (firstDayJS + 6) % 7; // convertir pour Lundi=0
+        const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+        // cases vides avant le 1er
+        for(let i=0;i<startIndex;i++){
+          const empty = document.createElement('div');
+          empty.className = 'day empty';
+          grid.appendChild(empty);
+        }
+
+        // cases jours
+        for(let d=1; d<=daysInMonth; d++){
+          const dayCell = document.createElement('div');
+          const dateStr = yyyy_mm_dd(year, monthIndex+1, d);
+          dayCell.className = 'day';
+          dayCell.setAttribute('data-date', dateStr);
+
+          const label = document.createElement('div');
+          label.className = 'day-number';
+          label.textContent = d;
+          dayCell.appendChild(label);
+
+          // events for this day
+          const dayEvents = events.filter(ev => ev.date === dateStr);
+          if(dayEvents.length){
+            const badge = document.createElement('div');
+            badge.className = 'event-badges';
+            dayEvents.forEach(ev => {
+              const dot = document.createElement('span');
+              dot.className = 'event-badge';
+              dot.title = ev.title + (ev.time ? ' — ' + ev.time : '');
+              dot.style.background = typeColors[ev.type] || typeColors.default;
+              badge.appendChild(dot);
+            });
+            dayCell.appendChild(badge);
+          }
+
+          // **plus de popup au clic** : on n'ajoute plus d'écouteur de clic
+          grid.appendChild(dayCell);
+        }
+
+        // remplir la dernière ligne pour garder grille régulière (optionnel)
+        const totalCells = startIndex + daysInMonth;
+        const rem = (7 - (totalCells % 7)) % 7;
+        for(let i=0;i<rem;i++){
+          const empty = document.createElement('div');
+          empty.className = 'day empty';
+          grid.appendChild(empty);
+        }
+      }
+
+      // initialisation: affichage du mois courant
+      (function init(){
+        const now = new Date();
+        const y = now.getFullYear();
+        const mIndex = now.getMonth(); // 0-based
+        renderCalendar(y, mIndex);
+      })();
+
+    </script>
 
 </body>
 </html>
