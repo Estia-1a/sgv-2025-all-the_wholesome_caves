@@ -9,10 +9,153 @@
 </head>
 <body>
 
-    <div class="profile-card" aria-label="Carte profil">
-  <img src="media/pictures/avatar.png" alt="Photo de profil">
-  <div class="profile-name">Antoine Mandier</div>
+ <div class="info-column" aria-label="Informations utilisateur">
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Lieux de naissance</span>
+      <span class="info-value">Ville, Pays</span>
+    </div>
+  </div>
+
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Date de naissance</span>
+      <span class="info-value">01/01/2000</span>
+    </div>
+  </div>
+
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Sexe</span>
+      <span class="info-value">Masculin</span>
+    </div>
+  </div>
+
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Adresse</span>
+      <span class="info-value">123 Rue Exemple</span>
+    </div>
+  </div>
+
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Numéro Étudiant</span>
+      <span class="info-value">2025XXXX</span>
+    </div>
+  </div>
+
+ <div class="info-column info-column-2" aria-label="Informations supplémentaires">
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Adresse mail</span>
+      <span class="info-value">Valeur 1</span>
+    </div>
+  </div>
+
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Téléphone portable</span>
+      <span class="info-value">Valeur 2</span>
+    </div>
+  </div>
+
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Téléphone fixe</span>
+      <span class="info-value">Valeur 3</span>
+    </div>
+  </div>
+
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Adresse mail de récupération</span>
+      <span class="info-value">Valeur 4</span>
+    </div>
+  </div>
+
+  <div class="info-bubble">
+    <div class="info-text">
+      <span class="info-label">Statut</span>
+      <span class="info-value">Valeur 5</span>
+    </div>
+  </div>
 </div>
+</div>
+
+<button class="edit-button" type="button">Modifier</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const editBtn = document.querySelector('.edit-button');
+  if (!editBtn) return;
+
+  const bubbles = Array.from(document.querySelectorAll('.info-bubble'));
+  let editing = false;
+  let backup = [];
+
+  function enterEdit() {
+    backup = bubbles.map(b => {
+      const v = b.querySelector('.info-value');
+      return v ? v.textContent.trim() : '';
+    });
+
+    bubbles.forEach((b, i) => {
+      const v = b.querySelector('.info-value');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'info-input';
+      input.value = backup[i] || '';
+      if (v) v.replaceWith(input);
+      else b.appendChild(input);
+    });
+
+    editBtn.textContent = 'Enregistrer';
+    showCancelButton();
+    editing = true;
+  }
+
+  function exitEdit(save) {
+    bubbles.forEach((b, i) => {
+      const input = b.querySelector('.info-input');
+      const newVal = save ? (input.value.trim() || '—') : (backup[i] || '—');
+      const span = document.createElement('span');
+      span.className = 'info-value';
+      span.textContent = newVal;
+      input.replaceWith(span);
+    });
+
+    editBtn.textContent = 'Modifier';
+    removeCancelButton();
+    editing = false;
+  }
+
+  function showCancelButton() {
+    if (document.querySelector('.cancel-button')) return;
+    const c = document.createElement('button');
+    c.type = 'button';
+    c.className = 'cancel-button';
+    c.textContent = 'Annuler';
+    editBtn.insertAdjacentElement('afterend', c);
+    c.addEventListener('click', () => exitEdit(false));
+  }
+
+  function removeCancelButton() {
+    const c = document.querySelector('.cancel-button');
+    if (c) c.remove();
+  }
+
+  editBtn.addEventListener('click', function () {
+    if (!editing) enterEdit();
+    else exitEdit(true);
+  });
+});
+</script>
+
+    <div class="profile-card" aria-label="Carte profil">
+     <img src="C:\Users\marvin.thuret\OneDrive - ESTIA\Documents\20251207_110114.jpg" alt="Photo de profil">
+     <div class="profile-name">Antoine Mandiant</div>
+    </div>
 
   <header class="sticky-header">
     <nav class="header-group">
@@ -35,3 +178,4 @@
   </main>
 </body>
 </html>
+

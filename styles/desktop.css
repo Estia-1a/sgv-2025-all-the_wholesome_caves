@@ -368,8 +368,8 @@ body {
 /* Carte profil top-left */
 .profile-card {
   position: fixed;
-  top: 180px;
-  left: 120px;
+  top: 220px;
+  left: 150px;
   width: 160px;
   background: #fff;
   border: 1px solid #ddd;
@@ -381,14 +381,14 @@ body {
 }
 .profile-card img {
   width: 100%;
-  height: auto;
+  height: 275px;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 6px;
   display: block;
 }
 .profile-card .profile-name {
-  margin-top: 8px;
+  margin-top: 10px;
   font-weight: 700;
   font-size: 14px;
   color: #222;
@@ -399,5 +399,120 @@ body {
   .profile-card .profile-name { font-size: 13px; }
 }
 
-.profile-card { width: 200px; padding: 12px; }
+.profile-card { width: 200px; height: 300px; padding: 12px; }
 .profile-card .profile-name { font-size: 16px; }
+
+/* Colonne de 5 cases (positionnée ; changez left/top si besoin) */
+.info-column {
+  position: fixed;
+  top: 180px;
+  left: 475px; /* ajuster selon la largeur de la photo */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 260px;
+  z-index: 1000;
+}
+
+/* Style d'une case/bulle */
+.info-bubble {
+  background: #f8f9fb;
+  border: 1px solid #e6e9ef;
+  padding: 10px 12px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* Texte dans la case */
+.info-text { display: flex; flex-direction: column; gap: 2px; }
+.info-label { font-size: 12px; color: #6b7280; }
+.info-value { font-weight: 700; font-size: 14px; color: #111827; }
+
+/* Bouton Modifier (fixe à droite) */
+.edit-button {
+  position: fixed;
+  right: 20px;
+  top: 205px;
+  transform: translateY(-50%);
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .info-column { left: 140px; width: 220px; top: 0.75rem; }
+  .info-value { font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .info-column { position: static; width: auto; margin: 0.5rem; }
+  .edit-button { position: static; transform: none; display: block; margin: 0.5rem auto; }
+}
+
+/* Inputs et bouton Annuler pour l'édition inline */
+.info-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #111827;
+  box-sizing: border-box;
+  outline: none;
+}
+.info-input:focus {
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+  border-color: #2563eb;
+}
+
+/* Bouton Annuler (positionné en fixed à côté de Modifier) */
+.cancel-button {
+  position: fixed;
+  right: 20px;
+  top: 255px;
+  transform: translateY(-50%);
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(239,68,68,0.12);
+  z-index: 1001;
+}
+.cancel-button:hover { opacity: 0.95; }
+.cancel-button:hover { opacity: 0.95; }
+
+/* Ajustement pour que les bulles gardent l'espace */
+.info-bubble { min-height: 44px; padding: 8px 12px; }
+
+/* Deuxième colonne de bulles */
+.info-column-2 {
+  position: fixed;
+  top: 180px;
+  left: 790px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 260px;
+  z-index: 1000;
+}
+
+@media (max-width: 1200px) {
+  .info-column-2 { left: 700px; }
+}
+@media (max-width: 900px) {
+  .info-column-2 { left: calc(100% - 300px); width: 220px; top: 0.75rem; }
+}
+@media (max-width: 480px) {
+  .info-column-2 { position: static; width: auto; margin: 0.5rem; }
+}
