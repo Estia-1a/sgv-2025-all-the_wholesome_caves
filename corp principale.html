@@ -3,73 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primo'scola student</title>
+    <title>Primo'scola - Accueil Mobile</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 
-    <header class="top-nav">
-        <div class="left-icons">
-            <a href="#" class="icon-link">
-                <img src="images/student.png" alt="Icone Profil étudiant">
-                <span>Profil étudiant</span>
-            </a>
-            <a href="#" class="icon-link">
-                <img src="images/finance_icon.png" alt="Icone Profil financier">
-                <span>Profil financier</span>
-            </a>
-        </div>
-        
-        <h1>Primo'scola student</h1>
-
-        <div class="right-icons">
-            <button type="button" class="btn-icon" aria-label="Notifications">🔔</button>
-            <button type="button" class="btn-icon" aria-label="Messages">💬</button>
-            <div class="user-profile">
-                <img src="images/user.png" alt="Photo de profil utilisateur">
-                <span>Moi</span>
+    <div class="mobile-container">
+        <header class="status-card">
+            <div class="status-header">
+                <span class="loader-icon">⌛</span>
+                <h2>En ce moment</h2>
             </div>
-        </div>
-    </header>
+            <p><strong>Développement Web Statique</strong></p>
+            <p>Salle : B204</p>
+        </header>
 
-    <main>
-        <nav class="central-menu">
-            <a href="emploi.html" class="menu-button">
-                <span class="icon-box"><img src="images/calendar.png" alt="Calendrier"></span>
-                <span class="text-box">Emploi du temps</span>
-            </a>
-            <a href="absences.html" class="menu-button">
-                <span class="icon-box"><img src="images/clock.png" alt="Horloge"></span>
-                <span class="text-box">Absence et retard</span>
-            </a>
-            <a href="notes.html" class="menu-button">
-                <span class="icon-box"><img src="images/notes.png" alt="Notes"></span>
-                <span class="text-box">Notes et devoirs</span>
-            </a>
-            <a href="finance.html" class="menu-button">
-                <span class="icon-box"><img src="images/home.png" alt="Accueil Finance"></span>
-                <span class="text-box">Finance</span>
-            </a>
-            <a href="documents.html" class="menu-button">
-                <span class="icon-box"><img src="images/book.png" alt="Livre"></span>
-                <span class="text-box">Document</span>
-            </a>
-        </nav>
-    </main>
+        <main>
+            <section class="quick-access">
+                <h3>Accès rapide</h3>
+                
+                <div class="card planning-card">
+                    <div class="card-header">📅 Planning</div>
+                    <img src="images/calendar_december.png" alt="Planning Décembre 2025" class="calendar-img">
+                </div>
 
-    <footer>
-        <div class="social-icons">
-            <a href="https://instagram.com" aria-label="Instagram">
-                <img src="images/insta.png" alt="Logo Instagram">
-            </a>
-            <a href="https://facebook.com" aria-label="Facebook">
-                <img src="images/fb.png" alt="Logo Facebook">
-            </a>
-            <a href="https://twitter.com" aria-label="Twitter">
-                <img src="images/twitter.png" alt="Logo Twitter">
-            </a>
-        </div>
-    </footer>
+                <div class="card notes-card">
+                    <div class="card-header">📓 Notes</div>
+                    <div class="notes-content">
+                        <span>Dernières notes -</span>
+                        <span>Matière</span>
+                    </div>
+                </div>
+
+                <nav class="action-list">
+                    <a href="absences.html" class="action-item">
+                        <img src="images/absences_icon.png" alt=""> Absences
+                    </a>
+                    <a href="documents.html" class="action-item">
+                        <img src="images/docs_icon.png" alt=""> Documents
+                    </a>
+                    <a href="messages.html" class="action-item">
+                        <img src="images/chat_icon.png" alt=""> Communiquer
+                    </a>
+                </nav>
+            </section>
+        </main>
+
+        <footer class="bottom-nav">
+            <a href="index.html" class="nav-item active"><img src="images/home.png" alt="Accueil"></a>
+            <a href="cours.html" class="nav-item"><img src="images/cap.png" alt="Cours"></a>
+            <a href="profil.html" class="nav-item"><img src="images/user.png" alt="Profil"></a>
+        </footer>
+    </div>
 
 </body>
 </html>
