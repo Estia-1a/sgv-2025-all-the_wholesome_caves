@@ -369,7 +369,7 @@ body {
 .profile-card {
   position: fixed;
   top: 220px;
-  left: 150px;
+  left: 125px;
   width: 160px;
   background: #fff;
   border: 1px solid #ddd;
@@ -399,7 +399,7 @@ body {
   .profile-card .profile-name { font-size: 13px; }
 }
 
-.profile-card { width: 200px; height: 300px; padding: 12px; }
+.profile-card { width: 225px; height: 300px; padding: 12px; }
 .profile-card .profile-name { font-size: 16px; }
 
 /* Colonne de 5 cases (positionnée ; changez left/top si besoin) */
@@ -516,3 +516,93 @@ body {
 @media (max-width: 480px) {
   .info-column-2 { position: static; width: auto; margin: 0.5rem; }
 }
+
+/* Grille principale : colonnes infos + carte profil */
+.profile-grid {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 18px 0;
+  flex-wrap: wrap;
+}
+
+.left-columns {
+  flex: 1 1 600px;
+  min-width: 280px;
+  max-width: 920px;
+}
+
+.right-side {
+  width: 300px;
+  flex: 0 0 300px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Ajuste la card profil pour s'aligner verticalement */
+.profile-card {
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(20,40,80,0.06);
+  text-align: center;
+}
+
+/* Tutor section reuse */
+.tutor-section { margin-top: 12px; }
+.tutor-card { padding: 12px; border-radius: 12px; background: linear-gradient(135deg,#f7fbff,#eef6ff); box-shadow: 0 6px 18px rgba(20,40,80,0.06); }
+.tutor-header { font-weight:700; margin-bottom:10px; color:#0b3a66; }
+.tutor-bubbles { display:flex; flex-direction:column; gap:10px; }
+@media (max-width: 1024px) { .tutor-bubbles { display:flex; flex-direction:column; gap:10px; } }
+@media (max-width: 767px) {
+  .profile-grid { flex-direction: column; gap: 12px; }
+  .right-side { width: 100%; flex: 1 1 100%; }
+  .tutor-bubbles { display:flex; flex-direction:column; gap:10px; }
+}
+
+/* Taille de la grande bulle */
+/* Positionner la grande bulle en bas à gauche (fixe) */
+.tutor-card {
+  position: fixed !important;
+  bottom: 50px !important;
+  left: 360px !important;
+  width: 350px;
+  max-width: calc(100% - 40px);
+  z-index: 1200 !important;
+}
+
+/* Sur petits écrans, la rendre non-fixe pour éviter recouvrement */
+@media (max-width: 767px) {
+  .tutor-card {
+    position: static !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+/* Empiler les petites bulles (si pas déjà) */
+.tutor-bubbles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+@media (max-width: 767px) {
+  .tutor-bubbles { grid-template-columns: 1fr; }
+}
+
+/* Ajuster l'espace entre colonnes et la largeur de la card profil */
+.profile-grid { gap: 48px; }
+.right-side { width: 500px; }
+
+/* Décalage vertical si besoin */
+.tutor-section { margin-top: 45px; align-self: flex-start; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .tutor-card { width: 100%; }
+  .right-side { width: 240px; }
+}
+
