@@ -5,6 +5,11 @@ body {
   font-family: Arial, sans-serif;
 }
 
+:root {
+  --tutor-gap: 48px;
+  --tutor-offset: 40px;
+}
+
 /* ==== HEADER STICKY ==== */
 .sticky-header {
   background-color: darkblue;
@@ -550,7 +555,7 @@ body {
 }
 
 /* Tutor section reuse */
-.tutor-section { margin-top: 12px; }
+.tutor-section { margin-top: var(--tutor-gap); align-self: flex-start; }
 .tutor-card { padding: 12px; border-radius: 12px; background: linear-gradient(135deg,#f7fbff,#eef6ff); box-shadow: 0 6px 18px rgba(20,40,80,0.06); }
 .tutor-header { font-weight:700; margin-bottom:10px; color:#0b3a66; }
 .tutor-bubbles { display:flex; flex-direction:column; gap:10px; }
@@ -578,6 +583,13 @@ body {
   bottom: 50px !important;
 }
 
+@media (min-width: 1201px) {
+  .tutor-card,
+  .tutor-card-2 {
+    transform: translateY(var(--tutor-offset));
+  }
+}
+
 /* Sur petits écrans, la rendre non-fixe pour éviter recouvrement */
 @media (max-width: 767px) {
   .tutor-card {
@@ -603,12 +615,93 @@ body {
 .profile-grid { gap: 48px; }
 .right-side { width: 500px; }
 
-/* Décalage vertical si besoin */
-.tutor-section { margin-top: 45px; align-self: flex-start; }
-
 /* Responsive */
 @media (max-width: 900px) {
   .tutor-card { width: 100%; }
   .right-side { width: 240px; }
+}
+
+/* === Profil utilisateur : responsive layout (<=1200px) without touching desktop placement === */
+@media (max-width: 1200px) {
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    align-items: start;
+  }
+
+  .left-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px 20px;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .info-column,
+  .info-column-2 {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+    gap: 16px;
+    z-index: auto;
+  }
+
+  .info-bubble {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .edit-button {
+    position: static;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-top: 12px;
+    align-self: flex-start;
+  }
+
+  .cancel-button {
+    position: static;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-top: 8px;
+  }
+
+  .profile-card {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .right-side {
+    width: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  .tutor-section {
+    margin-top: var(--tutor-gap);
+    align-self: stretch;
+  }
+
+  .tutor-card,
+  .tutor-card-2 {
+    position: static !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: min(360px, 100%);
+    max-width: 100%;
+    align-self: flex-end;
+  }
 }
 
