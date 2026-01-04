@@ -572,6 +572,12 @@ body {
   z-index: 1200 !important;
 }
 
+.tutor-card.tutor-card-2 {
+  left: auto !important;
+  right: 360px !important;
+  bottom: 50px !important;
+}
+
 /* Sur petits écrans, la rendre non-fixe pour éviter recouvrement */
 @media (max-width: 767px) {
   .tutor-card {
