@@ -1,99 +1,74 @@
+﻿/* ==== MOBILE STYLES - Écrans <= 767px ==== */
+
+/* ==== HEADER ==== */
+/* Les styles du header mobile héritent des styles globaux */
+
+/* ==== INFO BUBBLES ==== */
+.info-bubbles { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  padding: 0 14px; 
+}
+
+.bubble { 
+  width: 100%; 
+  max-width: none; 
+  min-width: auto; 
+}
+
+/* ==== CALENDAR ==== */
+.calendar-grid { 
+  grid-template-columns: repeat(7, minmax(36px, 1fr)); 
+  overflow-x: auto; 
+}
+
+.day { 
+  min-height: 38px; 
+  font-size: 0.86rem; 
+}
+
+/* ==== FLOATING EDIT BUTTON ==== */
+.floating-edit-btn {
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+}
+
+.floating-edit-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==== RESPONSIVE ADJUSTMENTS ==== */
+/* Réduit les marges et padding sur mobile pour utiliser mieux l'espace limité */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    /* Image de fond de l'ESTIA */
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                url('../images/estia.jpg') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
+  font-size: 14px;
 }
 
-.mobile-container {
-    width: 375px;
-    background: rgba(255, 255, 255, 0.85); /* Effet verre dépoli */
-    backdrop-filter: blur(10px);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 40px rgba(0,0,0,0.5);
-    position: relative;
-    padding-bottom: 80px;
+.hero-title {
+  font-size: 1.8rem;
+  margin: 20px 14px 0 14px;
 }
 
-/* Header bleu (Design validé) */
-.status-card {
-    background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-    color: white;
-    margin: 20px;
-    padding: 25px;
-    border-radius: 25px;
-    box-shadow: 0 10px 20px rgba(58, 123, 213, 0.2);
+.profile-image {
+  width: 200px;
+  height: 200px;
 }
 
-.status-header h2 { margin: 0; font-size: 1.2rem; }
-
-/* Centrage du titre de section */
-.section-title {
-    text-align: center;
-    color: #333;
-    margin: 20px 0;
-    font-size: 1.4rem;
+.profile-name {
+  font-size: 1.4rem;
 }
 
-/* Harmonisation des cartes Planning et Notes */
-.main-card {
-    display: flex;
-    align-items: center;
-    background: white;
-    margin: 10px 20px;
-    padding: 15px;
-    border-radius: 20px;
-    text-decoration: none;
-    color: #333;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: 0.3s;
+.profile-program {
+  font-size: 0.9rem;
 }
 
-.main-card:hover { transform: translateY(-3px); }
-
-.card-emoji { font-size: 2rem; margin-right: 15px; }
-
-.card-text strong { display: block; font-size: 1.1rem; }
-.card-text span { font-size: 0.8rem; color: #777; }
-
-/* Boutons d'action */
-.action-item {
-    display: block;
-    background: white;
-    margin: 10px 20px;
-    padding: 12px;
-    border-radius: 50px;
-    text-decoration: none;
-    color: #333;
-    text-align: center;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+.bubble h3 {
+  font-size: 1rem;
 }
 
-/* Navigation Basse */
-.bottom-nav {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 15px 0;
-    border-top: 1px solid #eee;
+.bubble p {
+  font-size: 0.95rem;
 }
-
-.nav-item {
-    text-decoration: none;
-    color: #888;
-    text-align: center;
-    font-size: 0.75rem;
-}
-
-.nav-item.active { color: #3a7bd5; font-weight: bold; }
